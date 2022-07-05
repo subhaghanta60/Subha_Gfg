@@ -1,0 +1,39 @@
+private:
+    void getAns(int r, int c, int len, string curr, string &s, vector<string> &ans,vector<vector<bool>> &present){
+    if(r == len){
+        string x= curr;
+        x.pop_back();
+        ans.push_back(x);
+        return;
+    }
+    for(int i=c;i<len;i++){
+        curr +=s[i];
+        if(present[r][i]){
+            curr +=" ";
+            getAns(i+1,i+1,len, curr, s,ans, present);
+            curr.pop_back();
+        }
+    }
+}
+public:
+    vector<string> wordBreak(int n, vector<string>& dict, string s)
+    {
+    int len=s.length();
+     vector<vector<bool>> present;
+     present.resize(len, vector<bool>(len, false));
+     for(int i=0;i<len;i++){
+         string curr ="";
+         for(int j=i;j<len;j++){
+             curr += s[j];
+             for(int k=0;k<n;k++){
+                 if(dict[k] == curr){
+                     present[i][j] = true;
+                     break;
+                 }
+             }
+         }
+     }
+     vector<string>ans;
+     getAns(0,0,len, "", s, ans, present);
+     return ans;
+    }
