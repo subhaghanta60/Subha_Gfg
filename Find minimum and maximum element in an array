@@ -1,0 +1,13 @@
+pair<long long, long long> getMinMax(long long a[], int n) {
+    
+    pair<long long,long long>ans;
+    
+    long long maxi=a[0];
+    long long mini=a[0];
+    for(int i=1;i<n;i++){
+        maxi =max(maxi,a[i]);
+        mini=min(mini,a[i]);    }
+    ans.first=mini;
+    ans.second = maxi;
+    return ans;
+    
