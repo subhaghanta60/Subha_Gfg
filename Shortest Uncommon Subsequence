@@ -1,0 +1,36 @@
+public:
+int dp[501][501];
+
+      int solve (string &S, string &T, int i,int j){
+          if(i>=S.size()) return 1000;
+          
+          if(j >=T.size()) return 1;
+          
+          if(dp[i][j] !=-1) return dp[i][j];
+          
+          int k=j;
+          for(;k<T.size();k++){
+              if(T[k] == S[i]){
+                  break;
+              }
+          }
+          if(k == T.size()) return 1;
+          
+          int ans1=solve(S,T,i+1,j);
+          int ans2 =1 + solve(S,T,i+1, k+1);
+          return dp[i][j] = min(ans1,ans2);
+          
+      }
+
+    int shortestUnSub(string S, string T) {
+        
+        int s=S.size();
+        int t=T.size();
+        
+        memset(dp, -1,sizeof(dp));
+        int ans =solve(S,T,0,0);
+        if(ans>=1000) return -1;
+        
+        return ans;
+    }
+};
