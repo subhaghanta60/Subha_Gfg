@@ -1,0 +1,29 @@
+class Solution{
+  public:
+    bool dfs(int a[],vector<int>visited,int idx,int k,int currsum,int targetsum,int m)
+    {
+        if(k==1) return true;                                               //if k==1 then all the subsets have been found so return true.
+        if(currsum==targetsum) return dfs(a,visited,0,k-1,0,targetsum,m);  //this condition means you have found one suset so start from begining for another subset.
+        for(int i=idx ; i<m ; i++)
+        {
+            if(!visited[i])                                                //if the index is not visited then it can be used in the current subset or bucket.
+            {
+                visited[i]=true;                                                          //set this index as used to avoid redundancy.
+                if(dfs(a,visited,i+1,k,currsum+a[i],targetsum,m)) return true;        //explore the choices
+                visited[i]=false;                                                         //for backtrack.
+            }
+        }
+        return false;
+    }
+    bool isKPartitionPossible(int a[], int n, int k)
+    {
+         vector<int>visited(n,false);
+        int sum=0;
+        for(int f=0;f<n;f++){
+            sum +=a[f];
+        }
+        if(sum%k!=0) return false;
+        int targetsum=sum/k;
+        return dfs(a,visited,0,k,0,targetsum,n);
+    }
+};
