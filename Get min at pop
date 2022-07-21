@@ -1,0 +1,65 @@
+stack<int> _push(int arr[],int n)
+{
+    stack<int>st;
+    
+    for(int i=0;i<n;i++){
+        
+        st.push(arr[i]);
+    }
+  return st;
+}
+
+//Function to print minimum value in stack each time while popping.
+void _getMinAtPop(stack<int>s)
+{
+   stack<int>res;
+   int count =0;
+   while(!s.empty()){
+       count++;
+       int curr = s.top();
+       res.push(curr);
+       s.pop();
+   }
+   vector<int>ans(count);
+   int mini =INT_MAX;
+   for(int i=0; i<count;i++){
+      int curr1 = res.top();
+      mini = min(mini, curr1);
+      ans[i] = mini;
+      res.pop();
+   }
+   for(int i=count-1; i>=0; i--)
+        {
+           cout<<ans[i]<< " ";
+            
+        }
+   return;
+}
+
+
+***********************************
+
+stack<int> _push(int arr[],int n)
+{
+    stack<int>st;
+    int minVal =INT_MAX;
+    
+    for(int i=0;i<n;i++){
+        minVal=min(minVal, arr[i]);
+        st.push(minVal);
+        
+        st.push(arr[i]);
+    }
+  return st;
+}
+
+//Function to print minimum value in stack each time while popping.
+void _getMinAtPop(stack<int>s)
+{
+   while(!s.empty()){
+       s.pop();
+       cout<< s.top()<<" ";
+       s.pop();
+   }
+   return;
+}
