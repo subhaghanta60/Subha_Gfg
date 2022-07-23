@@ -1,0 +1,46 @@
+ private:
+    int maximum(int x,int y, int z){
+        if(x>=y && x>=z){
+            return x;
+        }
+        else if(y>=x && y>=z){
+            return y;
+        }
+        else {
+            return z;
+        }
+    }
+    
+    int solve(int h, int m, vector<vector<int>>&dp, int prev){
+        
+        if(h<=0 || m <=0){
+            return 0;
+        }
+        if(dp[h][m] !=-1) return dp[h][m];
+        
+        int a=0;
+        int b=0; 
+        int c=0;
+        if(prev !=1){
+            a =1+solve(h+3,m+2,dp,1);
+        }
+        
+        if(prev !=2 && h>5 && m>10){
+            b=1+solve(h-5,m-10,dp,2);
+        }
+        if(prev !=3 && h>20){
+            c =1+solve(h-20,m+5,dp,3);
+        }
+        
+        dp[h][m]=maximum(a,b,c);
+        return dp[h][m];
+        
+    }
+    
+    public:
+        int maxLevel(int h,int m)
+        {
+            vector<vector<int>> dp(3000,vector<int>(3000, -1));
+            int prev=0;
+            return solve(h,m,dp,prev);
+        }
