@@ -1,0 +1,13 @@
+    public:
+    int maxPathSum(Node* root)
+    {
+       if(root==NULL){
+           return 0;
+       }
+       int leftSum=maxPathSum(root->left);
+       int rightSum=maxPathSum(root->right);
+       int sum=root->data;
+       sum= max(leftSum, rightSum) + sum;
+       
+       return sum;
+    }
