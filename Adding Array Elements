@@ -1,0 +1,19 @@
+int minOperations(int arr[], int n, int k) {
+        k=-k;
+        int cnt=0;
+        priority_queue<int>pq;
+        for(int i=0;i<n;i++){
+            pq.push(-arr[i]);
+        }
+        while(pq.top() >k){
+            int topel=pq.top();
+            pq.pop();
+            int secondtopel = pq.top();
+            pq.pop();
+            pq.push(topel + secondtopel);
+            cnt++;
+            
+        }
+        return cnt;
+        // code here
+    }
