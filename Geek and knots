@@ -1,0 +1,22 @@
+onst int mod=1000000007;
+   long long int findNcR(int n, int r){
+       if(r>n) return 0;
+       if((n-r) < r){
+           r=n-r;
+       }
+       vector<int>dp(r+1, 0);
+       dp[0]=1;
+       
+       for(int i=1;i<=n;i++){
+           for(int j=min(i,r);j>0;j--){
+               dp[j]=(dp[j]%mod + dp[j-1]%mod)%mod;
+           }
+       }
+       return (dp[r])%mod;
+   }
+    int knots(int M, int N, int K){
+        long long int m=findNcR(M,K);
+        long long int n=findNcR(N,K);
+        long long ans =(m*n*(1ll))%mod;
+        
+        return (int)ans;
