@@ -1,0 +1,42 @@
+private:
+bool isPrime(int n){
+    if(n<4) return true;
+    for(int i=2;i<=n/2 ;i++){
+        if(n%i == 0) return false;
+    }
+    return true;
+}
+public:
+    int firingEmployees(vector<int> &arr, int n){
+        vector<vector<int>>relations(n+1, vector<int>());
+        queue<int>q;
+        for(int i=0;i<n;i++){
+            if(arr[i] == 0){
+                q.push(i+1);
+            }
+            relations[arr[i]].push_back(i+1);
+        }
+        int cur=0,ans=0;
+        
+        while(!q.empty()){
+            int size = q.size();
+            while(size--){
+                int emp=q.front();
+                q.pop();
+                for(auto &it:relations[emp]){
+                    q.push(it);
+                }
+                if(cur==0){
+                    break;
+                }
+                int perf=cur+emp;
+                if(isPrime(perf)){
+                    ans++;
+                }
+               
+                
+            }
+            cur++;
+        }
+        return ans;
+    }
