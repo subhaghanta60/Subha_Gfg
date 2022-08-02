@@ -1,0 +1,26 @@
+private:
+    Node *makeBST(Node *head, int val){
+        if(head == NULL){
+            return newNode(val);
+        }
+        if(head->data >= val){
+            head->left = makeBST(head->left, val);
+        }
+        else {
+            head->right = makeBST(head->right, val);
+        }
+        return head;
+    }
+public:
+    //Function that constructs BST from its preorder traversal.
+    Node* post_order(int pre[], int size)
+    {
+        if(size == 0){
+            return NULL;
+        }
+        Node *head = NULL;
+        for(int i=0;i<size;i++){
+            head = makeBST(head, pre[i]);
+        }
+        return head;
+    }
