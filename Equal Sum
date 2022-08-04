@@ -1,0 +1,28 @@
+public:
+    string equilibrium(int *arr, int n) {
+        int leftSum=0;
+        int rightSum =0;
+        int TotalSum =0;
+        for(int i=0;i<n;i++){
+            TotalSum +=arr[i];
+            
+        }
+        
+        for(int i=0;i<n;i++){
+            
+           if(i ==0){
+               leftSum =0;
+           }
+           else {
+               leftSum +=arr[i-1];
+           }
+           
+           TotalSum -=arr[i];
+           rightSum =TotalSum;
+           if(leftSum == rightSum){
+            return "YES";
+           }
+        }
+        
+        return "NO";
+    }
