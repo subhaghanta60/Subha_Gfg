@@ -1,0 +1,22 @@
+ public:
+    string encryptString(string s){
+    string ans ="";
+    char ch = s[0];
+    int count =1;
+    
+    for(int i=1;i<s.size();i++){
+        if(s[i] == s[i-1]){
+            count ++;
+        }
+        else {
+            ans +=ch;
+            ans +=to_string(count);
+            ch =s[i];
+            count =1;
+        }
+    }
+    ans +=ch;
+    ans +=to_string(count);
+    reverse(ans.begin(), ans.end());
+    return ans;
+    }
