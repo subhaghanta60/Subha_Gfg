@@ -1,0 +1,29 @@
+int findEquilibrium(int A[], int n)
+{
+        int leftSum=0;
+        int rightSum =0;
+        int TotalSum =0;
+        for(int i=0;i<n;i++){
+            TotalSum +=A[i];
+            
+        }
+        
+        for(int i=0;i<n;i++){
+            
+           if(i ==0){
+               leftSum =0;
+           }
+           else {
+               leftSum +=A[i-1];
+           }
+           
+           TotalSum -=A[i];
+           rightSum =TotalSum;
+           if(leftSum == rightSum){
+            return i;
+            
+           }
+        }
+        
+        return -1;
+}
