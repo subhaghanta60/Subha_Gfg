@@ -1,0 +1,23 @@
+public:
+    int maxCoins(vector<int>&A,int n)
+    {
+	    vector<vector<int>>dp(n,vector<int>(n));
+	    for(int i=0;i<n;i++){
+	        for(int j=0,k=i;k<n;j++,k++){
+	            if(i==0){
+	                dp[j][k] =A[j];
+	            }
+	            else if (i==1){
+	                dp[j][k] = max(A[j],A[k]);
+	            }
+	            else {
+	                int temp1 = A[j] + min(dp[j+2][k],dp[j+1][k-1]);
+	                int temp2 = A[k] + min(dp[j+1][k-1], dp[j][k-2]);
+	                dp[j][k] = max(temp1,temp2);
+	            }
+	            
+	            
+	        }
+	    }
+	    return dp[0][n-1];
+    }
