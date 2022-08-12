@@ -1,0 +1,21 @@
+string caseSort(string str, int n)
+    {
+        priority_queue<char, vector<char>,greater<char>>P;
+         priority_queue<char, vector<char>,greater<char>>Q;
+         for(auto &it: str){
+             if(it<91) P.push(it);
+             else Q.push(it);
+         }
+         for(auto &it:str){
+             if(it<91){
+                 it = P.top();
+                 P.pop();
+             }
+             else {
+                 it =Q.top();
+                 Q.pop();
+             }
+         }
+         return str;
+        
+    }
