@@ -1,0 +1,15 @@
+int countFriendsPairings(int n) 
+    { 
+       if(n == 1 || n==2) return n;
+     
+       long long  a =1;
+       long long  b =2;
+       long long  mod =1e9 + 7;
+       long long  ans ;
+       for(long long  i=3;i<=n;i++){
+           ans = (b+(i-1)*a)%mod;
+           a=b;
+           b=ans;
+       }
+       return ans;
+    }
