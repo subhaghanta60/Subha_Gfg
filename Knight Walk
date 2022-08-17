@@ -1,0 +1,48 @@
+private :
+  int bfs(vector<int>&KnightPos, vector<int>&TargetPos,int N){
+        int rows = N+1;
+	    int cols = N+1;
+	    vector<vector<bool>>visited(rows,vector<bool>(cols,false));
+      
+      visited[KnightPos[0]][KnightPos[1]] = true;
+      queue<int>q;
+      q.push(KnightPos[0]*cols + KnightPos[1]);
+      int dx[8] = {2,2,-2,-2,1,1,-1,-1};
+      int dy[8] ={1,-1,1,-1,2,-2,2,-2};
+      int levels =0;
+      while(!q.empty()){
+          int size =q.size();
+          while(size--){
+              int currSquare =q.front();
+              q.pop();
+              int X = currSquare / cols;
+              int Y = currSquare % cols;
+              if(X == TargetPos[0] && Y == TargetPos[1] ){
+                  return levels;
+              }
+              for(int k=0;k<8;k++){
+                  int newX =X+dx[k];
+                  int newY = Y+dy[k];
+                  
+                  if(newX >0 && newX <rows && newY >0 && newY <cols && visited[newX][newY] == false){
+                      q.push(newX*cols + newY);
+                      visited[newX][newY] = true;
+                      
+                  }
+              }
+              
+          }
+          levels++;
+      }
+      if(visited[TargetPos[0]][TargetPos[1]]){
+          return levels;
+      }
+      return -1;
+      
+      
+  }
+public:
+	int minStepToReachTarget(vector<int>&KnightPos, vector<int>&TargetPos, int N){
+	    
+	    return bfs(KnightPos,TargetPos,N);
+	}
