@@ -1,0 +1,26 @@
+public:
+    //Function to calculate sum of all numbers present in a string.
+    int findSum(string str)
+    {
+    	
+    	int sum=0;
+    	int tempSum=0;
+    	for(int i=0;i<str.size();i++){
+    	    char ch =str[i];
+    	    if((ch >='a' && ch <='z') || (ch >='A' && ch <='Z')){
+    	        sum +=tempSum;
+    	        tempSum=0;
+    	        
+    	    }
+    	    else {
+    	        tempSum = (tempSum*10) + (ch-'0');
+    	        
+    	    }
+    	}
+    	if(tempSum >0){
+    	    sum +=tempSum;
+    	}
+    	return sum;
+    	
+    	
+    }
