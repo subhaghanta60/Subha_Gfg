@@ -1,0 +1,52 @@
+{
+private:
+       bool isSafe(int newX,int newY, vector<vector<int>>&grid){
+           return (newX >=0 && newX < grid.size() && newY >=0 && newY < grid[0].size());
+    }
+private:
+    int solve(int i,int j,vector<vector<int>>& grid,vector<vector<int>>&vis,int count){
+         vis[i][j] = 1;
+          count++;
+       
+        queue<pair<int,int>>q;
+        q.push({i,j});
+         
+        int dx[8] = {-1,-1,0,1,1,1,0,-1};
+        int dy[8] = {0,1,1,1,0,-1,-1,-1};
+        
+        while(!q.empty()){
+            auto p = q.front();
+            q.pop();
+            int x =p.first;
+            int y =p.second;
+            for(int l=0;l<8;l++){
+                int newX =x+dx[l];
+                int newY =dy[l]+y;
+                if(isSafe(newX,newY,grid) && !vis[newX][newY] && grid[newX][newY] == 1){
+                    vis[newX][newY] =1;
+                    q.push({newX,newY});
+                    count++;
+                }
+            }
+           
+        }
+        return count;
+    }
+    public:
+    //Function to find unit area of the largest region of 1s.
+    int findMaxArea(vector<vector<int>>& grid) {
+        int ans =0;
+        int row =grid.size();
+        int col = grid[0].size();
+        vector<vector<int>> vis(row,vector<int>(col,0));
+        
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(grid[i][j] == 1 && !vis[i][j]){
+                    
+                    ans = max(ans, solve(i,j,grid,vis,0));
+                }
+            }
+        }
+        return ans;
+    }
