@@ -1,0 +1,48 @@
+ string s="";
+        int i=X.length()-1;
+        int j=Y.length()-1;
+        int rem=0;
+        while(i>=0 && j>=0)
+        {
+            
+            int x=(X[i]-'0')+(Y[j]-'0')+rem;
+            int ld=x%10;
+            // cout<<ld<<endl;
+            s+=to_string(ld);
+            rem=(x/10);
+            i--;
+            j--;
+        }
+        // cout<<rem<<i<<j<<endl;
+        while(i>=0)
+        {
+            int x=(X[i]-'0')+rem;
+            int ld=x%10;
+            s+=to_string(ld);
+            rem=(x/10);
+            i--;
+        }
+        while(j>=0)
+        {
+            int x=(Y[j]-'0')+rem;
+            int ld=x%10;
+            s+=to_string(ld);
+            rem=(x/10);
+            j--;
+        }
+        if(rem>0)
+        s+=to_string(rem);
+        
+        string res="";
+        
+        if(s.length() == 0)
+            return "0";
+        
+        reverse(s.begin(),s.end());
+        int idx=-1;
+        for(int i=s.length()-1;i>=0;i--)
+            if(s[i]!='0')
+                idx=i;
+        if(idx==-1)
+            return "0";
+        return s.substr(idx,s.length());
