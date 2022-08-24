@@ -1,0 +1,31 @@
+class Solution{
+private:
+    bool isValid(string &s){
+        if(s.size() >1 && s[0] == '0' || stoi(s) >255){
+            return false;
+        }
+        return true;
+    }
+private:
+    void IP_GENERATOR(string &str, int curr, string build,int seg,vector<string>&res){
+        if(curr==str.size() && seg==4){
+            build.pop_back();
+            res.push_back(build);
+            return;
+        }
+        if(curr == str.size() || seg ==4){
+            return ;
+        }
+        for(int len =1;len <=3 && curr +len <=str.size();len++){
+            string snapShot = str.substr(curr,len);
+            if(isValid(snapShot) == true){
+                IP_GENERATOR(str,curr+len,build+snapShot+".",seg+1,res);
+            }
+        }
+    }
+  public:
+    vector<string> genIp(string &s) {
+        vector<string>res;
+        IP_GENERATOR(s,0,"",0,res);
+        return res;
+    }
