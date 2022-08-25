@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    bool makeEven(vector<int> arr) {
+        int sum =0;
+        int n=arr.size();
+        if(n %2 !=0) return false;
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+        }
+        return (sum%2==0);
+    }
+    
+    ******************************************************************
+    
+    class Solution {
+  public:
+    bool makeEven(vector<int> arr) {
+        int cnto=0;
+        int cnte=0;
+        for(auto &it:arr){
+            if(it %2) cnto++;
+        }
+        cnte =arr.size()-cnto;
+        if(cnto &1 || cnte &1) return false;
+        return true;
+    }
