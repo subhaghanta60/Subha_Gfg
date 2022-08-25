@@ -1,0 +1,25 @@
+public:
+    vector<int> countEleLessThanOrEqual(int arr1[], int arr2[], 
+                                 int m, int n)
+    {
+        sort(arr2,arr2+n);
+        vector<int>ans;
+        for(int i=0;i<m;i++){
+            int low = 0;
+            int high = n-1;
+            int toFind = arr1[i];
+            int ind =-1;
+            while(low <= high){
+                int mid = (low+high) >> 1;
+                if(arr2[mid] <= toFind){
+                    ind =mid;
+                    low =mid+1;
+                }
+                else {
+                    high =mid-1;
+                }
+            }
+            ans.push_back(ind+1);
+        }
+        return ans;
+    }
