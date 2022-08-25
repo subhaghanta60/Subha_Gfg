@@ -1,0 +1,19 @@
+public:
+    long long solve(int N, vector<int> &A) {
+        int cnt=0;
+        for(int i=0;i<N;i++){
+            set<int>st;
+            int gcdA=0;
+            for(int j=i;j<N;j++){
+                gcdA=__gcd(gcdA,A[j]);
+                if(st.find(gcdA) != st.end()){
+                    break;
+                }
+                
+                    cnt++;
+                    st.insert(gcdA);
+                
+            }
+        }
+        return cnt;
+    }
