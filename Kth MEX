@@ -1,0 +1,21 @@
+int kthMex(int N, int K, int A[]) {
+    set<int>st;
+    for(int i=0;i<N;i++){
+        st.insert(A[i]);
+    }
+    
+    int i=0;
+    
+    while(K>0){
+        if(st.find(i) == st.end()){
+            i++;
+            K--;
+            
+        }
+        else {
+            i++;
+        }
+    }
+    return i-1;
+
+}
