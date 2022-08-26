@@ -1,0 +1,52 @@
+public:
+    long long colosseum(int N,vector<int> A) {
+        long long preMax[N+1] ={0};
+        long long sufSmall[N+1] ={0};
+        long long sum =0;
+        priority_queue<long long,vector<long long>,greater<long long>>pq;
+        for(int i=0;i<N;i++){
+            sum +=A[i];
+            pq.push(A[i]);
+        }
+        preMax[0] = sum;
+        for(long long i=N;i< 2*N;i++){
+            
+             if(A[i] > pq.top()){
+                sum -=pq.top();
+                pq.pop();
+                
+                sum +=A[i];
+                pq.push(A[i]);
+            }
+            
+            preMax[i-N+1] =sum;
+            //cout<< preMax[i]<<" ";
+        }
+        
+        priority_queue<long long>pq2;
+        long long sum2=0;
+        for(int i=3*N-1;i>=2*N;i--){
+            pq2.push(A[i]);
+            sum2 +=A[i];
+        }
+        sufSmall[0]=sum;
+        for(long long i=2*N-1;i>=N;i--){
+            
+            if(A[i] <pq2.top()){
+                sum2 -=pq2.top();
+                pq2.pop();
+                
+                sum2 +=A[i];
+                pq2.push(A[i]);
+            }
+            sufSmall[i-N] = sum2;
+            //cout<<sufSmall[i]<< " ";
+        }
+        long long maxi =-1e18;
+        for(long long i=0;i<N;i++){
+            long long dif = preMax[i] - sufSmall[i];
+            maxi =max(maxi,dif);
+        }
+        return maxi;
+
+   }
