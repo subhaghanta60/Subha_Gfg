@@ -1,0 +1,29 @@
+ public:
+    string kPeriodic(string s, int K){
+        int n=s.size();
+        int block_size = __gcd(n,K);
+        map<char,int>mpp;
+        for(auto it:s){
+            mpp[it]++;
+        }
+        int noOfBlocks = n/block_size;
+        for(auto it: mpp){
+            if(it.second % noOfBlocks !=0){
+                return "-1";
+            }
+        }
+        
+        string ss="";
+        for(auto it: mpp){
+            char c=it.first;
+            int howManyTimes = (it.second / noOfBlocks);
+            while(howManyTimes--){
+                ss +=c;
+            }
+        }
+        string ans ="";
+        while(noOfBlocks--){
+            ans +=ss;
+        }
+        return ans;
+    }
