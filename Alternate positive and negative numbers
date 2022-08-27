@@ -1,0 +1,33 @@
+void rearrange(int arr[], int n) {
+	    // code here
+	    queue<int>stPos,stNeg;
+	    for(int i=0;i<n;i++){
+	        if(arr[i] >=0){
+	            stPos.push(arr[i]);
+	        }
+	        else {
+	            stNeg.push(arr[i]);
+	        }
+	    }
+	    int i=0;
+	    while(i<n && !stPos.empty() && !stNeg.empty()){
+	        if(i%2 == 0){
+	            arr[i] =stPos.front();
+	            stPos.pop();
+	        }
+	        else {
+	            arr[i] = stNeg.front();
+	            stNeg.pop();
+	        }
+	        i++;
+	    }
+	    while(!stPos.empty()){
+	        arr[i] =stPos.front();
+	        stPos.pop();
+	        i++;
+	    }
+	    while(!stNeg.empty()){
+	        arr[i] =stNeg.front();
+	        stNeg.pop();
+	        i++;
+	    }
