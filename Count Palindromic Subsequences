@@ -1,0 +1,23 @@
+private:
+     long long int func(string &str, vector<vector<long long int>>&dp,int start,int end){
+         int mod =1e9+7;
+         if(start == end) return 1;
+         if(start > end) return 0;
+         if(dp[start][end] != -1) return dp[start][end];
+         if(str[start] == str[end]){
+             dp[start][end] = (1+ func(str,dp,start+1,end) + func(str, dp, start, end-1)%mod);
+         }
+         else {
+             dp[start][end] = ((func(str,dp,start+1,end) + func(str,dp,start,end-1) - func(str,dp,start+1,end-1)) %mod+mod)%mod;
+             
+         }
+         return dp[start][end];
+     }
+    public:
+    /*You are required to complete below method */
+    long long int  countPS(string str)
+    {
+       int n=str.size();
+       vector<vector<long long int>>dp(n,vector<long long int>(n,-1));
+       return func(str,dp,0,n-1);
+    }
