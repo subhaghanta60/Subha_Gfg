@@ -1,0 +1,20 @@
+int solve(int n,string Str, int c[])
+  {
+      int cost =0;
+      for(int i=0,j=n-1;i<j;i+=2,j-=2){
+          if(Str[i] == Str[j] && Str[i+1] == Str[j-1]) continue;
+          if(Str[i] == Str[j-1] && Str[i+1] == Str[j]) continue;
+          
+          int firstCost =0;
+          int secondCost =0;
+          if(Str[i] != Str[j]) firstCost +=min(c[i],c[j]);
+          if(Str[i+1] != Str[j-1]) firstCost +=min(c[i+1],c[j-1]);
+          
+          if(Str[i] != Str[j-1]) secondCost += min(c[i],c[j-1]);
+          if(Str[i+1] != Str[j]) secondCost +=min(c[i+1],c[j]);
+          
+          cost +=min(firstCost,secondCost);
+
+      }
+      return cost;
+  }
