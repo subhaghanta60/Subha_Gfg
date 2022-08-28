@@ -1,0 +1,8 @@
+public:
+    int solve(int N, string S) {
+        set<char>st;
+        for(auto it:S){
+            st.insert(it);
+        }
+        return st.size()-1;
+    }
