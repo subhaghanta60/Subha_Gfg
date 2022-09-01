@@ -1,0 +1,16 @@
+void reverseInGroups(vector<long long>& arr, int n, int k){
+        int j=0;
+        int cnt =0;
+        for(int i=0;i<n;i++){
+            if( cnt ==k ){
+                reverse(arr.begin()+j, arr.begin()+i);
+                j=i;
+                cnt =0;
+            }
+            
+            cnt++;
+        }
+        if(j != n-1){
+            reverse(arr.begin()+j, arr.end());
+        }
+    }
