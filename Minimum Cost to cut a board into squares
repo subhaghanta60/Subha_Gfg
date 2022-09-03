@@ -1,0 +1,34 @@
+public:
+    int minimumCostOfBreaking(vector<int> X, vector<int> Y, int M, int N){
+        //Write your code here
+        int Total_Cost =0;
+        sort(X.begin(),X.end(),greater<int>());
+        sort(Y.begin(),Y.end(),greater<int>());
+        int i=0;
+        int j=0;
+        int h=1;
+        int v=1;
+        while(i<M-1 && j<N-1){
+            if(X[i] >=Y[j]){
+                Total_Cost += (X[i]*h);
+                i++;
+                v++;
+            }
+            else {
+                Total_Cost +=(Y[j]*v);
+                j++;
+                h++;
+            }
+        }
+        while(i !=M-1){
+            Total_Cost +=(X[i]*h);
+            i++;
+            v++;
+        }
+        while(j !=N-1){
+            Total_Cost +=(Y[j]*v);
+            j++;
+            h++;
+        }
+        return Total_Cost;
+    }
