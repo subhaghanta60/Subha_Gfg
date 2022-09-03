@@ -1,0 +1,27 @@
+private:
+void func(int ind,vector<int>&nums,set<int>&st, int sum,vector<vector<int>>&dp){
+    if(ind == nums.size()){
+        st.insert(sum);
+        return;
+    }
+    if(dp[ind][sum] != -1) return ;
+    func(ind+1,nums,st,sum,dp);
+    func(ind+1,nums,st,sum+nums[ind],dp);
+    dp[ind][sum]=1;
+    
+    
+}
+public:
+	vector<int> DistinctSum(vector<int>nums){
+	    set<int>st;
+	    int sum=0;
+	    for(auto it:nums) sum +=it;
+	    vector<vector<int>>dp(nums.size()+1,vector<int>(sum+1,-1));
+	    
+	  
+	    func(0,nums,st,0,dp);
+	      vector<int>ans(st.begin(),st.end());
+	      return ans;
+	      
+	    
+	}
