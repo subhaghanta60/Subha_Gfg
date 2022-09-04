@@ -1,0 +1,20 @@
+int equilibriumPoint(long long a[], int n) {
+    
+        int Total_sum =0;
+        for(int i=0;i<n;i++){
+            Total_sum +=a[i];
+        }
+        int preSum=0;
+        int sufSum =Total_sum-a[0];
+        for(int i=0;i<n;i++){
+            if(i==0){
+                if(preSum == sufSum) return i+1;
+            }
+            else {
+            preSum +=a[i-1];
+            sufSum -=a[i];
+            if(sufSum == preSum) return i+1;
+            }
+        }
+        return -1;
+    }
