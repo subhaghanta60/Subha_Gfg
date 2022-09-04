@@ -1,0 +1,29 @@
+public:
+    vector<string> pattern(int n){
+        // code here
+        vector<string>st;
+        int t=1;
+        for(int row=0;row<n;row++){
+            string ans, temp;
+            for(int sp=1;sp<=(2*row);sp++){
+                ans +="-";
+            }
+            for(int i=1;i<=n-row;i++){
+                temp =to_string(t);
+                ans +=temp;
+                ans+="*";
+                t++;
+            }
+            long long int m = (((n+1)*n)/2) + (((n-row)*(n-1-row))/2)+1;
+            for(int k=1;k<=n-row;k++){
+                temp = to_string(m);
+                ans +=temp;
+                if(k != n-row){
+                    ans +="*";
+                }
+                m++;
+            }
+            st.push_back(ans);
+        }
+        return st;
+    }
