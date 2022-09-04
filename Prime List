@@ -1,0 +1,40 @@
+public:
+
+    bool isPrime(int n){
+        if(n==1) return false;
+        if(n==2 || n==3) return true;
+        
+        for(int i=2;i<=sqrt(n);i++){
+            if(n%i==0){
+                return false;
+            }
+        }
+        return true;
+    }
+    Node *primeList(Node *head){
+        Node *temp = head;
+        while(temp !=NULL){
+            int num = temp->val,prev,next;
+            prev =next = num;
+            if(num == 1){
+                temp->val =2;
+                temp=temp->next;
+                continue;
+            }
+            while(!isPrime(prev)){
+                prev--;
+            }
+            while(!isPrime(next)){
+                next++;
+            }
+            if((num-prev) > next-num){
+                temp->val = next;
+            }
+            else {
+                temp->val = prev;
+            }
+            temp =temp->next;
+            
+        }
+        return head;
+    }
