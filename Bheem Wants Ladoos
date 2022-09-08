@@ -1,0 +1,45 @@
+class Solution{
+    int sum;
+    int target;
+    
+    void calSubtreeSumForGivenDepth(Node *curr, int depth){
+        if(depth < 0 || curr == NULL) return;
+        this->sum += curr->data;
+        
+        calSubtreeSumForGivenDepth(curr->left,depth-1);
+        calSubtreeSumForGivenDepth(curr->right,depth-1);
+    }
+    int dfs(Node *curr,int k){
+        if(curr == NULL) return -1;
+        
+        if(curr->data == target){
+            calSubtreeSumForGivenDepth(curr,k);
+            return k-1;
+        }
+        int dist = dfs(curr->left,k);
+        
+        if(dist > -1){
+            // It is in left subtree
+            this->sum += curr->data;
+            calSubtreeSumForGivenDepth(curr->right, dist-1);
+            return dist-1;
+            
+        }
+        dist = dfs(curr->right, k);
+        
+        if(dist > -1){
+            this->sum +=curr->data;
+            calSubtreeSumForGivenDepth(curr->left, dist-1);
+            return dist-1;
+        }
+        return -1;
+    }
+
+    public:
+    int ladoos(Node* root, int home, int k)
+    {
+        this->target =home;
+        this->sum =0;
+        dfs(root,k);
+        return sum;
+    }
