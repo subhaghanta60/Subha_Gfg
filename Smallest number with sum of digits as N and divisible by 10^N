@@ -1,0 +1,18 @@
+public:
+	string digitsNum(int N)
+	{
+	    string ans="";
+	    if(N%9 !=0){
+	    ans +=to_string((N%9));
+	    }
+	    
+	    for(int i=1;i<=(N/9);i++){
+	        ans +=to_string(9);
+	    }
+	    for(int i=1;i<=N;i++){
+	        ans +=to_string(0);
+	    }
+	    
+	    
+	    return ans;
+	}
