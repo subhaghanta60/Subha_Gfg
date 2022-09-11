@@ -1,0 +1,25 @@
+public:
+    int minimumNumber(int n,vector<int> &arr){
+        // Code here
+        int ans =INT_MAX;
+        if(n==1) return arr[0];
+        sort(arr.begin(),arr.end());
+        for(int i=n-1;i>0;i--){
+            if(arr[i] >arr[i-1]){
+            ans =min(ans,(arr[i]-arr[i-1]));
+            }
+        }
+        return ans;
+    }
+    
+    
+    **********************
+    
+    public:
+    int minimumNumber(int n,vector<int> &arr){
+        // Code here
+        int ans=arr[0];
+        for(int i=1;i<n;i++) ans =__gcd(ans,arr[i]);
+        
+        return ans;
+    }
