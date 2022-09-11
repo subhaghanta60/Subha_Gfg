@@ -1,0 +1,18 @@
+int buildTree(Node* root, int k, int &c){
+    if(root == NULL) return 0;
+    
+    int ans =0;
+    ans +=buildTree(root->left,k,c);
+    if(c<=k){
+        c++;
+        ans+=root->data;
+    }
+    ans +=buildTree(root->right,k,c);
+    
+    return ans;
+}
+
+int sum(Node* root, int k) 
+{ 
+    int c=1;
+    return buildTree(root,k,c);
